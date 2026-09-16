@@ -713,9 +713,49 @@ body {
   border: 1px solid rgba(168, 85, 247, 0.25);
 }
 
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.skill-icon {
+  font-size: 1.3rem;
+}
+
+.skill-icon.js {
+  color: #f7df1e;
+}
+
+.skill-icon.css {
+  color: #38bdf8;
+}
+
+.skill-icon.html {
+  color: #f97316;
+}
+
+.skill-icon.git {
+  color: #a855f7;
+}
+
 .repo-icon {
   color: var(--accent-tertiary);
 }
+
 
 .repo-btn {
   background: linear-gradient(135deg, var(--accent-tertiary), var(--accent-secondary));
