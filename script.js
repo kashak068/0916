@@ -57,9 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- 1. User Profile Persistence & Edit ---
   let savedName = localStorage.getItem('user_name');
-  if (!savedName || savedName === 'Alex Developer') {
-    savedName = 'user';
-    localStorage.setItem('user_name', 'user');
+  if (!savedName || savedName === 'Alex Developer' || savedName === 'user') {
+    savedName = '周聖儒';
+    localStorage.setItem('user_name', '周聖儒');
   }
   const savedTagline = localStorage.getItem('user_tagline');
   userNameEl.textContent = savedName;
