@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="aurora">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Dashboard & Live Clock</title>
+    <meta name="description"
+        content="Personalized web page featuring dynamic live clock, custom user profile, time-based greetings, and modern interactive dashboard widgets.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Ambient Background Orbs -->
+    <div class="background-globes">
+        <div class="globe globe-1"></div>
+        <div class="globe globe-2"></div>
+        <div class="globe globe-3"></div>
+    </div>
+
+    <div class="app-container">
+        <!-- Top Bar -->
+        <header class="top-bar glass-card">
+            <div class="profile-preview">
+                <div class="avatar-ring" id="avatarRing">
+                    <i class="fa-solid fa-user-astronaut"></i>
+                </div>
+                <div class="profile-info">
+                    <div class="greeting-badge" id="greetingBadge">
+                        <span class="greeting-icon" id="greetingIcon">✨</span>
+                        <span id="greetingText">Good Day</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Theme Controls -->
+            <div class="header-controls">
+                <div class="theme-selector">
+                    <button class="theme-btn active" data-theme="aurora" title="Aurora Borealis Theme">
+                        <span class="dot aurora"></span>
+                    </button>
+                    <button class="theme-btn" data-theme="cyberpunk" title="Cyberpunk Theme">
+                        <span class="dot cyberpunk"></span>
+                    </button>
+                    <button class="theme-btn" data-theme="obsidian" title="Obsidian Theme">
+                        <span class="dot obsidian"></span>
+                    </button>
+                    <button class="theme-btn" data-theme="sunset" title="Sunset Glow Theme">
+                        <span class="dot sunset"></span>
+                    </button>
+                </div>
+
+                <button id="formatToggleBtn" class="pill-btn" title="Toggle 12h/24h Format">
+                    <i class="fa-solid fa-clock"></i> <span id="formatLabel">12H</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Hero Card: Clock & Name -->
+        <main class="hero-section glass-card">
+            <div class="user-name-wrapper">
+                <h1 class="editable-name" id="userName" contenteditable="true" spellcheck="false"
+                    title="Click to edit name">user</h1>
+                <button class="edit-icon-btn" id="editNameBtn" title="Edit Name">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+            </div>
+            <p class="editable-tagline" id="userTagline" contenteditable="true" spellcheck="false"
+                title="Click to edit tagline">Welcome to your personal command center</p>
+
+            <!-- Main Live Clock Display -->
+            <div class="clock-display">
+                <div class="time-main">
+                    <span id="clockHours">10</span>:<span id="clockMinutes">00</span>:<span id="clockSeconds">00</span>
+                </div>
+                <div class="time-suffix-box">
+                    <span id="clockPeriod" class="period-badge">AM</span>
+                </div>
+            </div>
+
+            <!-- Date & Location Information -->
+            <div class="date-bar">
+                <div class="date-item">
+                    <i class="fa-regular fa-calendar-days"></i>
+                    <span id="fullDate">Wednesday, September 16, 2026</span>
+                </div>
+                <div class="date-divider">•</div>
+                <div class="date-item">
+                    <i class="fa-solid fa-globe"></i>
+                    <span id="timeZoneOffset">UTC+08:00</span>
+                </div>
+            </div>
+        </main>
+
+        <!-- Dashboard Grid Widgets -->
+        <section class="dashboard-grid">
+            <!-- Widget 1: Daily Focus / Checklist -->
+            <div class="widget-card glass-card">
+                <div class="widget-header">
+                    <h3><i class="fa-solid fa-list-check"></i> Today's Focus</h3>
+                    <span class="badge" id="focusCount">0 Done</span>
+                </div>
+                <div class="focus-input-group">
+                    <input type="text" id="focusInput" placeholder="Add a new task..." maxlength="60">
+                    <button id="addFocusBtn" class="icon-action-btn"><i class="fa-solid fa-plus"></i></button>
+                </div>
+                <ul id="focusList" class="focus-list">
+                    <!-- Dynamically populated -->
+                </ul>
+            </div>
+
+            <!-- Widget 2: Dynamic Quote Generator -->
+            <div class="widget-card glass-card quote-widget">
+                <div class="widget-header">
+                    <h3><i class="fa-solid fa-quote-left"></i> Daily Inspiration</h3>
+                    <button id="refreshQuoteBtn" class="icon-action-btn" title="New Quote">
+                        <i class="fa-solid fa-rotate-right"></i>
+                    </button>
+                </div>
+                <div class="quote-content">
+                    <p id="quoteText">"The best way to predict the future is to create it."</p>
+                    <span id="quoteAuthor" class="quote-author">— Peter Drucker</span>
+                </div>
+                <div class="quote-actions">
+                    <button id="copyQuoteBtn" class="pill-btn-sm"><i class="fa-regular fa-copy"></i> Copy</button>
+                </div>
+            </div>
+
+            <!-- Widget 3: World Clock -->
+            <div class="widget-card glass-card">
+                <div class="widget-header">
+                    <h3><i class="fa-solid fa-earth-americas"></i> World Clocks</h3>
+                </div>
+                <div class="world-clock-list">
+                    <div class="world-clock-item">
+                        <span class="city"><i class="fa-solid fa-building"></i> New York</span>
+                        <span class="world-time" id="timeNY">--:-- --</span>
+                    </div>
+                    <div class="world-clock-item">
+                        <span class="city"><i class="fa-solid fa-landmark"></i> London</span>
+                        <span class="world-time" id="timeLondon">--:-- --</span>
+                    </div>
+                    <div class="world-clock-item">
+                        <span class="city"><i class="fa-solid fa-torii-gate"></i> Tokyo</span>
+                        <span class="world-time" id="timeTokyo">--:-- --</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Widget 4: GitHub Project Board & Repo Cards Grid -->
+            <div class="widget-card glass-card github-project-card">
+                <div class="widget-header">
+                    <h3><i class="fa-brands fa-github"></i> GitHub Project</h3>
+                    <span class="badge">kashak068 / Project #1</span>
+                </div>
+                <div class="project-board-content">
+                    <div class="project-info">
+                        <i class="fa-solid fa-kanban-board project-icon"></i>
+                        <div>
+                            <h4>Project #1 Board</h4>
+                            <p class="project-sub">Track active tasks & sprint progress on GitHub</p>
+                        </div>
+                    </div>
+                    <a href="https://github.com/users/kashak068/projects/1" target="_blank" rel="noopener"
+                        class="project-link-btn">
+                        <span>Open Board</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Widget 5: GitHub Repository 0916 Card -->
+            <div class="widget-card glass-card github-repo-card">
+                <div class="widget-header">
+                    <h3><i class="fa-solid fa-code-branch"></i> GitHub Repository</h3>
+                    <span class="badge">kashak068 / 0916</span>
+                </div>
+                <div class="project-board-content">
+                    <div class="project-info">
+                        <i class="fa-solid fa-folder-code project-icon repo-icon"></i>
+                        <div>
+                            <h4>kashak068 / 0916</h4>
+                            <p class="project-sub">Primary code repository & source files</p>
+                        </div>
+                    </div>
+                    <a href="https://github.com/kashak068/0916" target="_blank" rel="noopener"
+                        class="project-link-btn repo-btn">
+                        <span>Open Repo</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Widget 6: Quick Links Bar -->
+            <div class="widget-card glass-card">
+                <div class="widget-header">
+                    <h3><i class="fa-solid fa-compass"></i> Quick Launch</h3>
+                </div>
+                <div class="quick-links-grid">
+                    <a href="https://github.com/kashak068/0916" target="_blank" rel="noopener" class="quick-link-item">
+                        <i class="fa-solid fa-code-branch"></i>
+                        <span>0916 Repo</span>
+                    </a>
+                    <a href="https://github.com/users/kashak068/projects/1" target="_blank" rel="noopener"
+                        class="quick-link-item">
+                        <i class="fa-brands fa-github"></i>
+                        <span>Project Board</span>
+                    </a>
+                    <a href="https://github.com/kashak068" target="_blank" rel="noopener" class="quick-link-item">
+                        <i class="fa-solid fa-user-gear"></i>
+                        <span>Profile</span>
+                    </a>
+                    <a href="https://chatgpt.com" target="_blank" rel="noopener" class="quick-link-item">
+                        <i class="fa-solid fa-robot"></i>
+                        <span>AI Assistant</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>Designed with <i class="fa-solid fa-heart glowing-heart"></i> for your daily productivity.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
