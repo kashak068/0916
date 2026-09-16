@@ -8,6 +8,8 @@
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 
 ---
+<img width="1876" height="933" alt="image" src="https://github.com/user-attachments/assets/63721195-73b1-49f4-9f1f-3dc8174244d4" />
+live-demo https://kashak068.github.io/0916/
 
 ## 🌟 Key Features
 
